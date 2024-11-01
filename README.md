@@ -1,22 +1,23 @@
 # smart-store-marco
 P1. Project Start &amp; Planning (GitHub Repo, clone down, organize)
 Project Setup Instructions
+
 **1. Create Local Project Virtual Environment (One-Time Task)**  
 Use only `python3` commands; `py` doesn't work right.  
 
-python3 -m venv .venv
+`python3 -m venv .venv`
 
 This command creates a new virtual environment in a folder named `.venv`. A virtual environment is an isolated workspace where you can install packages without affecting your system Python installation.
 
 **2. Activate Virtual Environment (Every Time we Open a Terminal to work on the Project)**  
 
-.venv\Scripts\activate
+`.venv\Scripts\activate`
 
 This command activates the virtual environment, allowing you to use the installed packages in your project.
 
 **3. Install Requirements**  
 
-python3 -m pip install --upgrade -r requirements.txt
+`python3 -m pip install --upgrade -r requirements.txt`
 
 This command installs the required packages listed in `requirements.txt`, ensuring your project has all the dependencies it needs.
 
@@ -28,20 +29,20 @@ In VS Code, use File / New Folder to create a new folder named `scripts` to hold
 
 **6. Run Python Script**  
 
-python3 scripts/data_prep.py
+`python3 scripts/data_prep.py`
 
 This command runs the Python script located in the `scripts` folder, executing any code contained within.
 
 **7. Git add-commit-push Your Work Back up to GitHub Project Repository**  
 
-git add .
+`git add .`
 
 This command stages all your changes for the next commit.  
 
-git commit -m "add starter files"
+`git commit -m "add starter files"`
 
 This command creates a new commit with a message describing what you’ve done.  
 
-git push -u origin main
+`git push -u origin main`
 
 This command uploads your committed changes to the `main` branch of your GitHub repository.
