@@ -12,6 +12,14 @@ python3 -m venv .venv`
 
 
 **2. Activate Virtual Environment (Every Time we Open a Terminal to work on the Project)**  
+
+>First use:
+
+```bash
+Set-ExecutionPolicy RemoteSigned -Scope Process
+```
+Then:
+
 ```bash
 `.venv\Scripts\activate`
 ```
