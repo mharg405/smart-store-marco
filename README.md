@@ -1,9 +1,11 @@
 # smart-store-marco
 P1. Project Start &amp; Planning (GitHub Repo, clone down, organize)
 Project Setup Instructions
-1. Create Local Project Virtual Environment (One-Time Task)
-Use only python3 commands; py doesn't work right.
+**1. Create Local Project Virtual Environment (One-Time Task)**  
+Use only python3 commands; py doesn't work right.  
+```bash
 python3 -m venv .venv
+
 This command creates a new virtual environment in a folder named .venv. A virtual environment is an isolated workspace where you can install packages without affecting your system Python installation.
 
 2. Activate Virtual Environment (Every Time we Open a Terminal to work on the Project)
