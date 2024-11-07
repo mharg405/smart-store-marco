@@ -4,7 +4,7 @@ P1. Project Start &amp; Planning (GitHub Repo, clone down, organize)
 Project Setup Instructions
 
 **1. Create Local Project Virtual Environment (One-Time Task)**  
-Use only `python3` commands; `py` doesn't work right.  
+Use only `python3` commands; `py` doesn't work right. cd to "C:\Users\4harg\Documents\smart-store-marco" 
 ```bash
 python3 -m venv .venv`
 ```
@@ -21,7 +21,7 @@ Set-ExecutionPolicy RemoteSigned -Scope Process
 Then:
 
 ```bash
-`.venv\Scripts\activate`
+.venv\Scripts\activate
 ```
 > This command activates the virtual environment, allowing you to use the installed packages in your project.
 
