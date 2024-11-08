@@ -31,11 +31,15 @@ print(f"Columns: {len(sales_df.columns)}, Records: {len(sales_df)}")
 # 5) Remove duplicate records
 sales_df.drop_duplicates(inplace=True)
 
-# 6) Replace outlier values in 'DiscountPercent' with the mode
+# 6) Replace outlier values in 'DiscountPercent' (0 and 100) with the mode
 discount_mode = mode(sales_df['DiscountPercent'])
+
+# Replace "five" with 5 and convert to numeric
 sales_df['DiscountPercent'] = sales_df['DiscountPercent'].apply(lambda x: 5 if x == "five" else x)
 sales_df['DiscountPercent'] = pd.to_numeric(sales_df['DiscountPercent'], errors='coerce')
-sales_df['DiscountPercent'] = sales_df['DiscountPercent'].fillna(discount_mode)
+
+# Replace outliers 0 and 100 with the mode, and fill NaN values (from invalid conversions) with the mode
+sales_df['DiscountPercent'] = sales_df['DiscountPercent'].replace({0: discount_mode, 100: discount_mode}).fillna(discount_mode)
 
 # Count columns and records after cleaning
 print(f"After Cleaning Sales Data - Columns: {len(sales_df.columns)}, Records: {len(sales_df)}")
