@@ -8,5 +8,5 @@ CustomerID,Name,Region,JoinDate,LoyaltyPoints,PreferredContactMethod
 1007,Susan Johnson,South,6/30/2023,5,Email
 1008,Tony Stark,North,5/1/2020,10,Text
 1009,Jason Bourne,West,12/1/2020,15,Text
-1010,Hermione Granger,East,12/9/2022,40,Email
+1010,Hermione Granger,East,12/9/2022,50,Text
 1011,Hermione Grager,East,12/9/2022,50,Text
