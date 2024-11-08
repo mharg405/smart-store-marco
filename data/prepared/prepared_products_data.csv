@@ -1,0 +1,9 @@
+ProductID,ProductName,Category,UnitPrice,StockQuantity,Supplier
+101,laptop,Electronics,793.12,10.0,Dell
+102,hoodie,Clothing,39.1,43.33,Starter
+103,cable,Electronics,22.76,30.0,Micro Center
+104,hat,Clothing,43.1,43.33,New Era
+105,football,Sports,19.78,50.0,Wilson
+106,controller,Electronics,88.98,100.0,Playstation
+107,jacket,Clothing,67.02,20.0,Carhart
+108,protector,Electronics,12.56,50.0,Staples 
