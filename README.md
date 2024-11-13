@@ -65,3 +65,54 @@ In VS Code, use File / New Folder to create a new folder named `scripts` to hold
 `git push -u origin main`
 ```
 > This command uploads your committed changes to the `main` branch of your GitHub repository.
+
+### P3. Prepare Data for ETL
+Error: 
+> FAIL: test_format_column_strings_to_upper_and_trim (__main__.TestDataScrubber.test_format_column_strings_to_upper_and_trim)     
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\4harg\Documents\smart-store-marco\test\test_data_scrubber.py", line 87, in test_format_column_strings_to_upper_and_trim
+    self.assertTrue(df_formatted['Name'].str.isupper().all(), "Strings not formatted to uppercase correctly")
+AssertionError: False is not true : Strings not formatted to uppercase correctly
+
+Fix:
+```python
+def format_column_strings_to_upper_and_trim(self, column: str) -> pd.DataFrame:
+        """
+        Format strings in a specified column by converting to uppercase and trimming whitespace.
+    
+        Parameters:
+            column (str): Name of the column to format.
+    
+        Returns:
+            pd.DataFrame: Updated DataFrame with formatted string column.
+
+        Raises:
+            ValueError: If the specified column not found in the DataFrame.
+        """
+        try:
+            # Apply uppercasing and trimming
+            self.df[column] = (
+                self.df[column]
+                .fillna("")    # Handle NaNs by filling with an empty string
+                .astype(str)   # Convert all entries to string type
+                .str.strip()   # Remove leading and trailing whitespace
+                .str.upper()   # Convert strings to uppercase
+            )
+            return self.df
+        except KeyError:
+            raise ValueError(f"Column name '{column}' not found in the DataFrame.")
+
+```
+
+- **Added functionally to save prepared files**
+  > Saved prepared files to prepared directory in data_prep.py script.
+
+Utils modelue not found error popped up and the fix was to add:
+
+```python
+# Now we can import local modules
+from utils.logger import logger  # noqa: E402
+from scripts.data_scrubber import DataScrubber  # noqa: E402
+```
+after PROJECT_ROOT

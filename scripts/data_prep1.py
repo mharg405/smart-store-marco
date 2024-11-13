@@ -3,16 +3,12 @@ import pathlib
 import sys
 import pandas as pd
 import os
-
+from utils.logger import logger
 
 # For local imports, temporarily add project root to Python sys.path
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.append(str(PROJECT_ROOT))
-
-# Now we can import local modules
-from utils.logger import logger  # noqa: E402
-from scripts.data_scrubber import DataScrubber  # noqa: E402
 
 # Constants
 DATA_DIR: pathlib.Path = PROJECT_ROOT.joinpath("data")

@@ -3,3 +3,19 @@
 2024-11-01 13:31:01.418 | INFO     | __main__:read_raw_data:26 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\products_data.csv.
 2024-11-01 13:31:01.429 | INFO     | __main__:read_raw_data:26 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\sales_data.csv.
 2024-11-01 13:31:01.449 | INFO     | __main__:main:45 - Data preparation complete.
+2024-11-13 10:42:58.566 | INFO     | __main__:main:41 - Starting data preparation...
+2024-11-13 10:42:58.569 | INFO     | __main__:read_raw_data:26 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\customers_data.csv.
+2024-11-13 10:42:58.577 | INFO     | __main__:read_raw_data:26 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\products_data.csv.
+2024-11-13 10:42:58.583 | INFO     | __main__:read_raw_data:26 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\sales_data.csv.
+2024-11-13 10:42:58.595 | INFO     | __main__:main:45 - Data preparation complete.
+2024-11-13 11:04:40.100 | INFO     | __main__:main:71 - Starting data preparation...
+2024-11-13 11:04:40.101 | INFO     | __main__:read_raw_data:25 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\customers_data.csv.
+2024-11-13 11:04:40.104 | INFO     | __main__:process_data:62 - Processing customers_data.csv with 11 records.
+2024-11-13 11:04:40.118 | INFO     | __main__:save_prepared_data:53 - Prepared data saved to: C:\Users\4harg\Documents\smart-store-marco\data\prepared\customers_data_prepared.csv
+2024-11-13 11:04:40.120 | INFO     | __main__:read_raw_data:25 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\products_data.csv.
+2024-11-13 11:04:40.122 | INFO     | __main__:process_data:62 - Processing products_data.csv with 8 records.
+2024-11-13 11:04:40.125 | INFO     | __main__:save_prepared_data:53 - Prepared data saved to: C:\Users\4harg\Documents\smart-store-marco\data\prepared\products_data_prepared.csv
+2024-11-13 11:04:40.127 | INFO     | __main__:read_raw_data:25 - Reading raw data from C:\Users\4harg\Documents\smart-store-marco\data\raw\sales_data.csv.
+2024-11-13 11:04:40.131 | INFO     | __main__:process_data:62 - Processing sales_data.csv with 94 records.
+2024-11-13 11:04:40.135 | INFO     | __main__:save_prepared_data:53 - Prepared data saved to: C:\Users\4harg\Documents\smart-store-marco\data\prepared\sales_data_prepared.csv
+2024-11-13 11:04:40.137 | INFO     | __main__:main:76 - Data preparation complete.
