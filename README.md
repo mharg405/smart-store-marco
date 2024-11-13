@@ -45,24 +45,24 @@ In VS Code, use File / New Folder to create a new folder named `scripts` to hold
 
 **6. Run Python Script**  
 ```bash
-`python3 scripts/data_prep.py`
+python3 scripts/data_prep.py
 ```
 > This command runs the Python script located in the `scripts` folder, executing any code contained within.
 
 
 **7. Git add-commit-push Your Work Back up to GitHub Project Repository**  
 ```bash
-`git add .`
+git add .
 ```
 > This command stages all your changes for the next commit. 
  
 ```bash
-`git commit -m "add starter files"`
+git commit -m "add starter files"
 ```
 > This command creates a new commit with a message describing what you’ve done.  
 
 ```bash
-`git push -u origin main`
+git push -u origin main
 ```
 > This command uploads your committed changes to the `main` branch of your GitHub repository.
 

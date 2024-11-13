@@ -19,3 +19,9 @@
 2024-11-13 11:04:40.131 | INFO     | __main__:process_data:62 - Processing sales_data.csv with 94 records.
 2024-11-13 11:04:40.135 | INFO     | __main__:save_prepared_data:53 - Prepared data saved to: C:\Users\4harg\Documents\smart-store-marco\data\prepared\sales_data_prepared.csv
 2024-11-13 11:04:40.137 | INFO     | __main__:main:76 - Data preparation complete.
+2024-11-13 14:10:26.660 | INFO     | __main__:main:87 - Starting data warehouse creation...
+2024-11-13 14:10:26.672 | INFO     | __main__:create_dw:75 - Data warehouse created successfully.
+2024-11-13 14:10:26.672 | INFO     | __main__:main:89 - Data warehouse creation complete.
+2024-11-13 14:13:20.116 | INFO     | __main__:main:87 - Starting data warehouse creation...
+2024-11-13 14:13:20.117 | INFO     | __main__:create_dw:75 - Data warehouse created successfully.
+2024-11-13 14:13:20.117 | INFO     | __main__:main:89 - Data warehouse creation complete.
