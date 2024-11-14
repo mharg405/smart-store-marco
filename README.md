@@ -116,3 +116,16 @@ from utils.logger import logger  # noqa: E402
 from scripts.data_scrubber import DataScrubber  # noqa: E402
 ```
 after PROJECT_ROOT
+
+# Smart Sales
+
+
+## Screenshot
+### Customers Table
+![Smart Sales Database (Customers)](images/customersTable.jpg)**
+
+### Product Table
+![Smart Sales Database (Products)](images/productsTable.jpg)
+
+### Sales Table
+![Smart Sales Database (Sales)](images/salesTable.jpg)

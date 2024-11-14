@@ -25,3 +25,17 @@
 2024-11-13 14:13:20.116 | INFO     | __main__:main:87 - Starting data warehouse creation...
 2024-11-13 14:13:20.117 | INFO     | __main__:create_dw:75 - Data warehouse created successfully.
 2024-11-13 14:13:20.117 | INFO     | __main__:main:89 - Data warehouse creation complete.
+2024-11-13 14:39:03.037 | INFO     | __main__:<module>:33 - Existing database data\dw\smart_sales.db deleted.
+2024-11-13 14:39:03.038 | INFO     | __main__:main:118 - Starting data warehouse creation...
+2024-11-13 14:39:03.045 | INFO     | __main__:create_customer_table:49 - customer table created.
+2024-11-13 14:39:03.048 | INFO     | __main__:create_product_table:65 - product table created.
+2024-11-13 14:39:03.051 | INFO     | __main__:create_sale_table:87 - sale table created.
+2024-11-13 14:39:03.051 | INFO     | __main__:create_dw:106 - Data warehouse created successfully.
+2024-11-13 14:39:03.052 | INFO     | __main__:main:120 - Data warehouse creation complete.
+2024-11-13 15:29:07.465 | INFO     | __main__:<module>:33 - Existing database data\dw\smart_sales.db deleted.
+2024-11-13 15:29:07.465 | INFO     | __main__:main:118 - Starting data warehouse creation...
+2024-11-13 15:29:07.473 | INFO     | __main__:create_customer_table:49 - customer table created.
+2024-11-13 15:29:07.476 | INFO     | __main__:create_product_table:65 - product table created.
+2024-11-13 15:29:07.479 | INFO     | __main__:create_sale_table:87 - sale table created.
+2024-11-13 15:29:07.480 | INFO     | __main__:create_dw:106 - Data warehouse created successfully.
+2024-11-13 15:29:07.480 | INFO     | __main__:main:120 - Data warehouse creation complete.
