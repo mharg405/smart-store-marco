@@ -120,9 +120,11 @@ after PROJECT_ROOT
 # Smart Sales
 
 
-## Screenshot
+## Schema
+![Smart Sales Database (Schema)](images/schema.png)
+
 ### Customers Table
-![Smart Sales Database (Customers)](images/customersTable.jpg)**
+![Smart Sales Database (Customers)](images/customersTable.jpg)
 
 ### Product Table
 ![Smart Sales Database (Products)](images/productsTable.jpg)
