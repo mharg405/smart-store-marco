@@ -1,3 +1,12 @@
+"""
+Module 4: Data Warehouse Creation Script
+File: scripts/dw_create.py
+
+This script handles the creation of the SQLite data warehouse. It creates tables
+for customer, product, and sale in the 'data/smart_sale.db' database.
+Each table creation is handled in a separate function for easier testing and error handling.
+"""
+
 import sqlite3
 import sys
 import pathlib
@@ -17,6 +26,67 @@ DB_PATH: pathlib.Path = DW_DIR.joinpath("smart_sales.db")
 # Ensure the 'data/dw' directory exists
 DW_DIR.mkdir(parents=True, exist_ok=True)
 
+# Delete data warehouse file if it exists
+if DB_PATH.exists():
+    try:
+        DB_PATH.unlink()  # Deletes the file
+        logger.info(f"Existing database {DB_PATH} deleted.")
+    except Exception as e:
+        logger.error(f"Error deleting existing database {DB_PATH}: {e}")
+
+def create_customer_table(cursor: sqlite3.Cursor) -> None:
+    """Create customer table in the data warehouse."""
+    try:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS customer (
+                customer_id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+				email TEXT NOT NULL,
+                region TEXT,
+                join_date TEXT  -- ISO 8601 format recommended for SQLite
+            )
+        """)
+        logger.info("customer table created.")
+    except sqlite3.Error as e:
+        logger.error(f"Error creating customer table: {e}")
+
+def create_product_table(cursor: sqlite3.Cursor) -> None:
+    """Create product table in the data warehouse."""
+    try:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS product (
+                product_id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                category TEXT,
+				supplier TEXT NOT NULL,
+                unit_price_usd REAL NOT NULL
+            )
+        """)
+        logger.info("product table created.")
+    except sqlite3.Error as e:
+        logger.error(f"Error creating product table: {e}")
+
+def create_sale_table(cursor: sqlite3.Cursor) -> None:
+    """Create sale table in the data warehouse."""
+    try:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS sale (
+                sale_id INTEGER PRIMARY KEY,
+                customer_id INTEGER,
+                product_id INTEGER,
+                store_id INTEGER,
+                campaign_id INTEGER,
+                sale_date DATE,
+                quantity INTEGER NOT NULL,
+                sale_amount_usd INTEGER NOT NULL,
+				payment_type TEXT NOT NULL,
+                FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+                FOREIGN KEY (product_id) REFERENCES product(product_id)
+            )
+        """)
+        logger.info("sale table created.")
+    except sqlite3.Error as e:
+        logger.error(f"Error creating sale table: {e}")
 
 def create_dw() -> None:
     """Create the data warehouse by creating customer, product, and sale tables."""
@@ -25,52 +95,13 @@ def create_dw() -> None:
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
 
-        # SQL for creating the 'customers' dimension table
-        create_customers_table = """
-        CREATE TABLE IF NOT EXISTS customers (
-            customer_id TEXT PRIMARY KEY,
-            name TEXT NOT NULL,
-            region TEXT NOT NULL,
-            join_date DATE NOT NULL,
-            email TEXT NOT NULL
-        );
-        """
+        # Create tables
+        create_customer_table(cursor)
+        create_product_table(cursor)
+        create_sale_table(cursor)
 
-        # SQL for creating the 'products' dimension table
-        create_products_table = """
-        CREATE TABLE IF NOT EXISTS products (
-            product_id TEXT PRIMARY KEY,
-            product_name TEXT NOT NULL,
-            category TEXT NOT NULL,
-            supplier TEXT NOT NULL,
-            unit_price REAL NOT NULL
-        );
-        """
-
-        # SQL for creating the 'sales' fact table
-        create_sales_table = """
-        CREATE TABLE IF NOT EXISTS sales (
-            sale_id INTEGER PRIMARY KEY,
-            date DATE NOT NULL,
-            customer_id TEXT,
-            product_id TEXT,
-            quantity INTEGER NOT NULL,
-            sales_amount REAL NOT NULL,
-            payment_type TEXT NOT NULL,
-            FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
-            FOREIGN KEY (product_id) REFERENCES products(product_id)
-        );
-        """
-
-        # Execute the SQL statements to create the tables
-        cursor.execute(create_customers_table)
-        cursor.execute(create_products_table)
-        cursor.execute(create_sales_table)
-
-        # Commit the changes to the database
+        # Commit the changes and close the connection
         conn.commit()
-
-        # Close the connection
         conn.close()
         logger.info("Data warehouse created successfully.")
 
