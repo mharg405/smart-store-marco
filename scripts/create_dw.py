@@ -38,12 +38,13 @@ def create_customer_table(cursor: sqlite3.Cursor) -> None:
     """Create customer table in the data warehouse."""
     try:
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS customer (
-                customer_id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL,
-				email TEXT NOT NULL,
-                region TEXT,
-                join_date TEXT  -- ISO 8601 format recommended for SQLite
+            CREATE TABLE IF NOT EXISTS customers (
+                CustomerID INTEGER PRIMARY KEY,
+                Name TEXT NOT NULL,
+                Region TEXT,
+                JoinDate TEXT,  -- ISO 8601 format recommended for SQLite
+                LoyaltyPoints INTEGER,
+                PreferredContactMethod TEXT
             )
         """)
         logger.info("customer table created.")
@@ -54,12 +55,13 @@ def create_product_table(cursor: sqlite3.Cursor) -> None:
     """Create product table in the data warehouse."""
     try:
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS product (
-                product_id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL,
-                category TEXT,
-				supplier TEXT NOT NULL,
-                unit_price_usd REAL NOT NULL
+            CREATE TABLE IF NOT EXISTS products (
+                ProductID INTEGER PRIMARY KEY,
+                ProductName TEXT NOT NULL,
+                Category TEXT,
+                UnitPrice REAL NOT NULL,
+				StockQuantity INTEGER,
+                Supplier TEXT      
             )
         """)
         logger.info("product table created.")
@@ -70,18 +72,18 @@ def create_sale_table(cursor: sqlite3.Cursor) -> None:
     """Create sale table in the data warehouse."""
     try:
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS sale (
-                sale_id INTEGER PRIMARY KEY,
-                customer_id INTEGER,
-                product_id INTEGER,
-                store_id INTEGER,
-                campaign_id INTEGER,
-                sale_date DATE,
-                quantity INTEGER NOT NULL,
-                sale_amount_usd INTEGER NOT NULL,
-				payment_type TEXT NOT NULL,
-                FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-                FOREIGN KEY (product_id) REFERENCES product(product_id)
+            CREATE TABLE IF NOT EXISTS sales (
+                TransactionID INTEGER PRIMARY KEY,
+                SaleDate DATE,
+                CustomerID INTEGER,
+                ProductID INTEGER,
+                StoreID INTEGER,
+                CampaignID INTEGER,
+                SaleAmount INTEGER NOT NULL,
+                DiscountPercent INTEGER NOT NULL,                
+				State TEXT NOT NULL,
+                FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID),
+                FOREIGN KEY (ProductID) REFERENCES product(ProductID)
             )
         """)
         logger.info("sale table created.")
