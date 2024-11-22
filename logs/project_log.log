@@ -127,3 +127,97 @@
 2024-11-21 13:17:35.469 | INFO     | __main__:load_data_to_db:61 - Loaded sales data into 'sales' table.
 2024-11-21 13:17:35.470 | INFO     | __main__:load_data_to_db:66 - Data successfully loaded into database and connection closed.
 2024-11-21 13:17:35.470 | INFO     | __main__:main:78 - Finished etl_to_dw complete.
+2024-11-21 15:01:15.875 | INFO     | __main__:main:88 - Starting etl_to_dw ...
+2024-11-21 15:01:15.876 | INFO     | __main__:extract_data:38 - Extracting data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\customers_data_prepared.csv ...
+2024-11-21 15:01:15.878 | INFO     | __main__:extract_data:41 - Successfully extracted data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\customers_data_prepared.csv.
+2024-11-21 15:01:15.878 | INFO     | __main__:extract_data:38 - Extracting data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\products_data_prepared.csv ...
+2024-11-21 15:01:15.880 | INFO     | __main__:extract_data:41 - Successfully extracted data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\products_data_prepared.csv.
+2024-11-21 15:01:15.880 | INFO     | __main__:extract_data:38 - Extracting data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\sales_data_prepared.csv ...
+2024-11-21 15:01:15.882 | INFO     | __main__:extract_data:41 - Successfully extracted data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\sales_data_prepared.csv.
+2024-11-21 15:01:15.882 | INFO     | __main__:load_data_to_db:61 - Connecting to database at C:/Users/4harg/OneDrive/Documents/smart-store-marco/data/dw/smart_sales.db ...
+2024-11-21 15:01:15.883 | INFO     | __main__:load_data_to_db:65 - Loading data into database tables ...
+2024-11-21 15:01:15.895 | INFO     | __main__:load_data_to_db:67 - Loaded customers data into 'customers' table.
+2024-11-21 15:01:15.904 | INFO     | __main__:load_data_to_db:70 - Loaded products data into 'products' table.
+2024-11-21 15:01:15.911 | INFO     | __main__:load_data_to_db:73 - Loaded sales data into 'sales' table.
+2024-11-21 15:01:15.912 | INFO     | __main__:load_data_to_db:78 - Data successfully loaded into database and connection closed.
+2024-11-21 15:01:15.912 | INFO     | __main__:main:90 - Finished etl_to_dw complete.
+2024-11-22 00:59:04.275 | INFO     | __main__:main:88 - Starting etl_to_dw ...
+2024-11-22 00:59:04.278 | INFO     | __main__:extract_data:38 - Extracting data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\customers_data_prepared.csv ...
+2024-11-22 00:59:04.291 | INFO     | __main__:extract_data:41 - Successfully extracted data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\customers_data_prepared.csv.
+2024-11-22 00:59:04.292 | INFO     | __main__:extract_data:38 - Extracting data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\products_data_prepared.csv ...
+2024-11-22 00:59:04.295 | INFO     | __main__:extract_data:41 - Successfully extracted data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\products_data_prepared.csv.
+2024-11-22 00:59:04.296 | INFO     | __main__:extract_data:38 - Extracting data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\sales_data_prepared.csv ...
+2024-11-22 00:59:04.298 | INFO     | __main__:extract_data:41 - Successfully extracted data from C:\Users\4harg\OneDrive\Documents\smart-store-marco\data\prepared\sales_data_prepared.csv.
+2024-11-22 00:59:04.299 | INFO     | __main__:load_data_to_db:61 - Connecting to database at C:/Users/4harg/OneDrive/Documents/smart-store-marco/data/dw/smart_sales.db ...
+2024-11-22 00:59:04.306 | INFO     | __main__:load_data_to_db:65 - Loading data into database tables ...
+2024-11-22 00:59:04.331 | INFO     | __main__:load_data_to_db:67 - Loaded customers data into 'customers' table.
+2024-11-22 00:59:04.348 | INFO     | __main__:load_data_to_db:70 - Loaded products data into 'products' table.
+2024-11-22 00:59:04.363 | INFO     | __main__:load_data_to_db:73 - Loaded sales data into 'sales' table.
+2024-11-22 00:59:04.364 | INFO     | __main__:load_data_to_db:78 - Data successfully loaded into database and connection closed.
+2024-11-22 00:59:04.366 | INFO     | __main__:main:90 - Finished etl_to_dw complete.
+2024-11-22 01:36:07.836 | INFO     | __main__:main:163 - Starting etl_to_dw ...
+2024-11-22 01:36:07.837 | ERROR    | __main__:delete_existing_records:32 - Error deleting records: no such table: customer
+2024-11-22 01:36:07.838 | ERROR    | __main__:load_data_to_db:150 - Error during database load: no such table: customer
+2024-11-22 01:36:07.838 | INFO     | __main__:main:165 - Finished etl_to_dw complete.
+2024-11-22 01:36:50.308 | INFO     | __main__:main:163 - Starting etl_to_dw ...
+2024-11-22 01:36:50.313 | INFO     | __main__:delete_existing_records:30 - Existing records deleted from all tables.
+2024-11-22 01:36:50.320 | ERROR    | __main__:insert_customers:58 - Error inserting customers: table customers has no column named customer_id
+2024-11-22 01:36:50.322 | ERROR    | __main__:load_data_to_db:150 - Error during database load: table customers has no column named customer_id
+2024-11-22 01:36:50.322 | INFO     | __main__:main:165 - Finished etl_to_dw complete.
+2024-11-22 01:51:41.049 | INFO     | __main__:main:163 - Starting etl_to_dw ...
+2024-11-22 01:51:41.053 | INFO     | __main__:delete_existing_records:30 - Existing records deleted from all tables.
+2024-11-22 01:51:41.056 | ERROR    | __main__:insert_customers:58 - Error inserting customers: table customers has no column named customer_id
+2024-11-22 01:51:41.057 | ERROR    | __main__:load_data_to_db:150 - Error during database load: table customers has no column named customer_id
+2024-11-22 01:51:41.058 | INFO     | __main__:main:165 - Finished etl_to_dw complete.
+2024-11-22 01:56:46.627 | INFO     | __main__:main:164 - Starting etl_to_dw ...
+2024-11-22 01:56:46.630 | INFO     | __main__:delete_existing_records:30 - Existing records deleted from all tables.
+2024-11-22 01:56:46.636 | ERROR    | __main__:insert_customers:59 - Error inserting customers: table customers has no column named customer_id
+2024-11-22 01:56:46.637 | ERROR    | __main__:load_data_to_db:151 - Error during database load: table customers has no column named customer_id
+2024-11-22 01:56:46.639 | INFO     | __main__:main:166 - Finished etl_to_dw complete.
+2024-11-22 02:00:09.267 | INFO     | __main__:main:193 - Starting etl_to_dw ...
+2024-11-22 02:00:09.271 | INFO     | __main__:delete_existing_records:51 - Existing records deleted from all tables.
+2024-11-22 02:00:09.277 | ERROR    | __main__:validate_schema:40 - Missing columns in customers table: {'loyalty_points', 'join_date', 'customer_id', 'preferred_contact_method', 'region', 'name'}
+2024-11-22 02:00:09.279 | ERROR    | __main__:insert_customers:64 - Skipping customers data insertion due to schema mismatch.
+2024-11-22 02:00:09.281 | ERROR    | __main__:insert_products:115 - Error inserting products: table products has no column named product_id
+2024-11-22 02:00:09.282 | ERROR    | __main__:load_data_to_db:180 - Error during database load: table products has no column named product_id
+2024-11-22 02:00:09.283 | INFO     | __main__:main:195 - Finished etl_to_dw complete.
+2024-11-22 02:02:42.228 | INFO     | __main__:main:193 - Starting etl_to_dw ...
+2024-11-22 02:02:42.233 | INFO     | __main__:delete_existing_records:51 - Existing records deleted from all tables.
+2024-11-22 02:02:42.238 | INFO     | __main__:insert_customers:66 - Original columns in the customers DataFrame: ['CustomerID', 'Name', 'Region', 'JoinDate', 'LoyaltyPoints', 'PreferredContactMethod']
+2024-11-22 02:02:42.238 | INFO     | __main__:insert_customers:81 - Renamed columns in the customers DataFrame: ['customer_id', 'name', 'region', 'join_date', 'loyalty_points', 'preferred_contact_method']
+2024-11-22 02:02:42.240 | ERROR    | __main__:insert_customers:86 - Error inserting customers: table customers has no column named customer_id
+2024-11-22 02:02:42.240 | ERROR    | __main__:load_data_to_db:180 - Error during database load: table customers has no column named customer_id
+2024-11-22 02:02:42.241 | INFO     | __main__:main:195 - Finished etl_to_dw complete.
+2024-11-22 02:10:26.235 | INFO     | __main__:main:201 - Starting etl_to_dw ...
+2024-11-22 02:10:26.236 | INFO     | __main__:check_table_schema:48 - Columns in the customers table: [(0, 'CustomerID', 'INTEGER', 0, None, 0), (1, 'Name', 'TEXT', 0, None, 0), (2, 'Region', 'TEXT', 0, None, 0), (3, 'JoinDate', 'TEXT', 0, None, 0), (4, 'LoyaltyPoints', 'INTEGER', 0, None, 0), (5, 'PreferredContactMethod', 'TEXT', 0, None, 0)]
+2024-11-22 02:10:26.241 | INFO     | __main__:delete_existing_records:56 - Existing records deleted from all tables.
+2024-11-22 02:10:26.244 | INFO     | __main__:insert_customers:71 - Original columns in the customers DataFrame: ['CustomerID', 'Name', 'Region', 'JoinDate', 'LoyaltyPoints', 'PreferredContactMethod']
+2024-11-22 02:10:26.245 | INFO     | __main__:insert_customers:86 - Renamed columns in the customers DataFrame: ['customer_id', 'name', 'region', 'join_date', 'loyalty_points', 'preferred_contact_method']
+2024-11-22 02:10:26.248 | ERROR    | __main__:insert_customers:91 - Error inserting customers: table customers has no column named customer_id
+2024-11-22 02:10:26.248 | ERROR    | __main__:load_data_to_db:188 - Error during database load: table customers has no column named customer_id
+2024-11-22 02:10:26.250 | INFO     | __main__:main:203 - Finished etl_to_dw complete.
+2024-11-22 02:13:40.868 | INFO     | __main__:main:191 - Starting etl_to_dw ...
+2024-11-22 02:13:40.870 | INFO     | __main__:check_table_schema:48 - Columns in the customers table: [(0, 'CustomerID', 'INTEGER', 0, None, 0), (1, 'Name', 'TEXT', 0, None, 0), (2, 'Region', 'TEXT', 0, None, 0), (3, 'JoinDate', 'TEXT', 0, None, 0), (4, 'LoyaltyPoints', 'INTEGER', 0, None, 0), (5, 'PreferredContactMethod', 'TEXT', 0, None, 0)]
+2024-11-22 02:13:40.872 | INFO     | __main__:delete_existing_records:56 - Existing records deleted from all tables.
+2024-11-22 02:13:40.875 | INFO     | __main__:insert_customers:71 - Original columns in the customers DataFrame: ['CustomerID', 'Name', 'Region', 'JoinDate', 'LoyaltyPoints', 'PreferredContactMethod']
+2024-11-22 02:13:40.877 | INFO     | __main__:insert_customers:76 - Renamed columns in the customers DataFrame: ['CustomerID', 'Name', 'Region', 'JoinDate', 'LoyaltyPoints', 'PreferredContactMethod']
+2024-11-22 02:13:40.882 | INFO     | __main__:insert_customers:79 - Customers data inserted into the customers table.
+2024-11-22 02:13:40.883 | ERROR    | __main__:insert_products:110 - Error inserting products: table products has no column named product_id
+2024-11-22 02:13:40.884 | ERROR    | __main__:load_data_to_db:178 - Error during database load: table products has no column named product_id
+2024-11-22 02:13:40.886 | INFO     | __main__:main:193 - Finished etl_to_dw complete.
+2024-11-22 02:17:27.788 | INFO     | __main__:main:170 - Starting etl_to_dw ...
+2024-11-22 02:17:27.790 | INFO     | __main__:delete_existing_records:56 - Existing records deleted from all tables.
+2024-11-22 02:17:27.793 | INFO     | __main__:insert_customers:71 - Original columns in the customers DataFrame: ['CustomerID', 'Name', 'Region', 'JoinDate', 'LoyaltyPoints', 'PreferredContactMethod']
+2024-11-22 02:17:27.794 | INFO     | __main__:insert_customers:76 - Renamed columns in the customers DataFrame: ['CustomerID', 'Name', 'Region', 'JoinDate', 'LoyaltyPoints', 'PreferredContactMethod']
+2024-11-22 02:17:27.797 | INFO     | __main__:insert_customers:79 - Customers data inserted into the customers table.
+2024-11-22 02:17:27.802 | INFO     | __main__:insert_products:98 - Products data inserted into the products table.
+2024-11-22 02:17:27.807 | INFO     | __main__:insert_sales:120 - Sales data inserted into the sales table.
+2024-11-22 02:17:27.807 | INFO     | __main__:load_data_to_db:154 - Prepared data successfully loaded into the data warehouse.
+2024-11-22 02:17:27.808 | INFO     | __main__:main:172 - Finished etl_to_dw complete.
+2024-11-22 02:18:11.365 | INFO     | __main__:main:170 - Starting etl_to_dw ...
+2024-11-22 02:18:11.368 | INFO     | __main__:delete_existing_records:56 - Existing records deleted from all tables.
+2024-11-22 02:18:11.377 | INFO     | __main__:insert_customers:79 - Customers data inserted into the customers table.
+2024-11-22 02:18:11.381 | INFO     | __main__:insert_products:98 - Products data inserted into the products table.
+2024-11-22 02:18:11.386 | INFO     | __main__:insert_sales:120 - Sales data inserted into the sales table.
+2024-11-22 02:18:11.386 | INFO     | __main__:load_data_to_db:154 - Prepared data successfully loaded into the data warehouse.
+2024-11-22 02:18:11.386 | INFO     | __main__:main:172 - Finished etl_to_dw complete.
