@@ -3,14 +3,14 @@ import sqlite3
 import sys
 import pathlib
 
-# For local imports, temporarily add project root to Python sys.path
-PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
+# Set PROJECT_ROOT to the root directory of your project
+PROJECT_ROOT = pathlib.Path(r"C:/Users/4harg/OneDrive/Documents/smart-store-marco")
 
 if str(PROJECT_ROOT) not in sys.path:
-    sys.path.append(str(PROJECT_ROOT))
+    sys.path.append(str(PROJECT_ROOT))  # Add the project root to sys.path
 
-# Now we can import local modules
-from utils.logger import logger  # noqa: E402
+# Import logger from utils
+from utils.logger import logger
 
 # Constants
 PREPARED_DATA_DIR: pathlib.Path = pathlib.Path("C:/Users/4harg/OneDrive/Documents/smart-store-marco/data/prepared")
@@ -20,6 +20,18 @@ CUSTOMERS_DATA = PREPARED_DATA_DIR.joinpath("customers_data_prepared.csv")
 PRODUCTS_DATA = PREPARED_DATA_DIR.joinpath("products_data_prepared.csv")
 SALES_DATA = PREPARED_DATA_DIR.joinpath("sales_data_prepared.csv")
 
+
+def delete_existing_records(cursor: sqlite3.Cursor) -> None:
+    pass
+
+def insert_customers(customers_df: pd.DataFrame, cursor: sqlite3.Cursor) -> None:
+    pass
+
+def insert_products(products_df: pd.DataFrame, cursor: sqlite3.Cursor) -> None:
+    pass
+
+def insert_sales(sales_df: pd.DataFrame, cursor: sqlite3.Cursor) -> None:
+    pass
 
 def extract_data(file_path: pathlib.Path) -> pd.DataFrame:
     """Extract data from a CSV file."""
