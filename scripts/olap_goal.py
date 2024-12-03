@@ -2,6 +2,8 @@ import pandas as pd
 import sqlite3
 import pathlib
 import sys
+import matplotlib.pyplot as plt
+import os
 
 # For local imports, temporarily add project root to Python sys.path
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -77,6 +79,32 @@ def write_cube_to_csv(cube: pd.DataFrame, filename: str) -> None:
         logger.error(f"Error saving OLAP cube to CSV file: {e}")
         raise
 
+def plot_low_performing_products(low_performing_products: pd.DataFrame) -> None:
+    """Plot a bar chart of low-performing products and save it as an image file."""
+    try:
+        # Define the file path where the image will be saved
+        image_path = r"C:\Users\4harg\OneDrive\Documents\smart-store-marco\images\olapCubeGoals.png"
+        
+        # Create the directory if it doesn't exist
+        os.makedirs(os.path.dirname(image_path), exist_ok=True)
+        
+        # Plot the data using Matplotlib
+        plt.figure(figsize=(10, 6))
+        plt.bar(low_performing_products['ProductID'], low_performing_products['SaleAmount_sum'], color='red')
+        plt.xlabel('Product ID')
+        plt.ylabel('Total Sales Amount')
+        plt.title('Low-Performing Products (Total Sales < $100)')
+        plt.xticks(rotation=90)  # Rotate product IDs for better visibility
+        plt.tight_layout()
+        
+        # Save the plot to the specified image path
+        plt.savefig(image_path)
+        plt.close()  # Close the plot to avoid it showing in the GUI
+        logger.info(f"Bar chart saved successfully to {image_path}.")
+    except Exception as e:
+        logger.error(f"Error saving the bar chart: {e}")
+        raise
+
 def main():
     """Main function for OLAP cubing."""
     logger.info("Starting OLAP Cubing process...")
@@ -105,8 +133,8 @@ def main():
     # Step 6: Filter low-performing products
     low_sales_threshold = 100  # Total sales below $100
     low_transactions_threshold = 5  # Fewer than 5 transactions
-    low_performing_products = olap_cube[
-        (olap_cube["SaleAmount_sum"] < low_sales_threshold) &
+    low_performing_products = olap_cube[(
+        olap_cube["SaleAmount_sum"] < low_sales_threshold) & 
         (olap_cube["TransactionID_count"] < low_transactions_threshold)
     ]
     
@@ -122,8 +150,12 @@ def main():
     # Step 10: Save the cube to a CSV file
     write_cube_to_csv(low_performing_products, "olap_goal_cube.csv")
 
+    # Step 11: Plot the results and save as an image
+    plot_low_performing_products(low_performing_products)
+
     logger.info("OLAP Cubing process completed successfully.")
     logger.info(f"Please see outputs in {OLAP_OUTPUT_DIR}")
 
 if __name__ == "__main__":
     main()
+
