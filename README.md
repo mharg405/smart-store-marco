@@ -443,3 +443,105 @@ git commit -m "Some note"
 ```bash
 git push origin main
 ```
+
+# OLAP Cubing for Identifying Low-Performing Products
+
+## The Business Goal  
+The goal is to identify low-performing products for potential discontinuation or repositioning strategies. This is important for optimizing product offerings, reducing operational costs, and ensuring better alignment with customer demand.  
+
+---
+
+## Data Source  
+
+We started with a SQLite database acting as a data warehouse. The following tables and columns were used:  
+
+- **Products Table**:  
+  - `ProductID`  
+  - `ProductName`  
+  - `Category`  
+  - `UnitPrice`  
+  - `StockQuantity`  
+  - `Supplier`  
+
+- **Sales Table**:  
+  - `TransactionID`  
+  - `SaleDate`  
+  - `CustomerID`  
+  - `ProductID`  
+  - `SaleAmount`  
+  - `DiscountPercent`  
+
+- **Customers Table**:  
+  - `CustomerID`  
+  - `Name`  
+  - `Region`  
+
+The `Sales Table` was the primary source, enriched with dimensions from `Products` and `Customers`.  
+
+---
+
+## Tools  
+
+**Python**:  
+- **Pandas** for data manipulation and OLAP cubing.  
+- **SQLite3** for querying the data warehouse.  
+- **Pathlib** for directory and file management.  
+- **Custom Logger** for tracking script progress.  
+
+**Why Python?**  
+Python provides flexibility and efficiency for handling data transformation, aggregation, and threshold-based filtering.  
+
+---
+
+## Workflow & Logic  
+
+### 1. Defining Dimensions and Metrics  
+- **Dimensions**:  
+  - `DayOfWeek`, `ProductID`, `CustomerID`  
+- **Metrics**:  
+  - `SaleAmount`: Aggregated as `sum` and `mean`.  
+  - `TransactionID`: Counted to measure activity.  
+
+### 2. Aggregation Logic  
+- The script groups sales data by the defined dimensions and computes:  
+  - Total sales (`SaleAmount_sum`)  
+  - Average sales (`SaleAmount_mean`)  
+  - Transaction count (`TransactionID_count`)  
+
+### 3. Threshold Filtering  
+- Products with `SaleAmount_sum` below 50 and `TransactionID_count` below 2 were flagged as low-performing.  
+
+### 4. Sorting and Counting  
+- The final output was ordered by total sales in ascending order.  
+- A new column (`ProductCount`) was added to indicate how frequently a product appeared in the dataset.  
+
+---
+
+## Results  
+
+### Insights  
+1. Products with very low sales and transaction counts were identified as potential candidates for discontinuation.  
+2. Seasonal patterns by `DayOfWeek` highlighted which days perform better in terms of sales.  
+
+### Visualization  
+Since this was a script-based workflow, results were saved in a CSV file (`olap_goal_cube.csv`). This can be imported into tools like Excel or Power BI for additional analysis.  
+
+### Suggested Actions  
+- **Discontinue** products consistently underperforming.  
+- **Reposition** products with low sales but promising categories (e.g., via promotions or alternative regions).  
+
+---
+
+## Challenges  
+
+### Challenge 1: Handling Missing Data  
+- **Issue**: Some sales records had invalid or missing `SaleDate` values.  
+- **Resolution**: Used `pd.to_datetime` with `errors='coerce'` to handle invalid dates gracefully.  
+
+### Challenge 2: Ambiguous Metrics  
+- **Issue**: Stakeholders requested additional insights into product traceability.  
+- **Resolution**: Added a `sale_ids` column to associate each aggregated row with specific transactions.  
+
+### Challenge 3: Output Usability  
+- **Issue**: Large OLAP cube outputs were difficult to interpret.  
+- **Resolution**: Rounded `SaleAmount_mean` and `SaleAmount_sum` to 2 decimal places for clarity.  
