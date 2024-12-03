@@ -221,3 +221,50 @@
 2024-11-22 02:18:11.386 | INFO     | __main__:insert_sales:120 - Sales data inserted into the sales table.
 2024-11-22 02:18:11.386 | INFO     | __main__:load_data_to_db:154 - Prepared data successfully loaded into the data warehouse.
 2024-11-22 02:18:11.386 | INFO     | __main__:main:172 - Finished etl_to_dw complete.
+2024-11-27 22:02:39.900 | INFO     | __main__:main:209 - Starting OLAP Cubing process...
+2024-11-27 22:02:39.903 | ERROR    | __main__:ingest_sales_data_from_dw:116 - Error loading sale table data from data warehouse: unable to open database file
+2024-11-27 22:11:50.485 | INFO     | __main__:main:209 - Starting OLAP Cubing process...
+2024-11-27 22:11:50.486 | ERROR    | __main__:ingest_sales_data_from_dw:116 - Error loading sale table data from data warehouse: unable to open database file
+2024-11-27 22:16:42.838 | INFO     | __main__:main:209 - Starting OLAP Cubing process...
+2024-11-27 22:16:42.839 | ERROR    | __main__:ingest_sales_data_from_dw:116 - Error loading sale table data from data warehouse: unable to open database file
+2024-11-27 22:17:03.064 | INFO     | __main__:main:212 - Starting OLAP Cubing process...
+2024-11-27 22:17:03.094 | INFO     | __main__:ingest_sales_data_from_dw:116 - Sales data successfully loaded from SQLite data warehouse.
+2024-11-27 22:20:21.209 | INFO     | __main__:main:197 - Starting OLAP Cubing process...
+2024-11-27 22:20:21.212 | INFO     | __main__:ingest_sales_data_from_dw:114 - Sales data successfully loaded from SQLite data warehouse.
+2024-11-27 22:20:21.223 | ERROR    | __main__:create_olap_cube:153 - Error creating OLAP cube: 'product_id'
+2024-11-27 22:23:43.206 | INFO     | __main__:main:197 - Starting OLAP Cubing process...
+2024-11-27 22:23:43.208 | INFO     | __main__:ingest_sales_data_from_dw:114 - Sales data successfully loaded from SQLite data warehouse.
+2024-11-27 22:23:43.211 | ERROR    | __main__:create_olap_cube:153 - Error creating OLAP cube: 'CustomerId'
+2024-11-27 22:24:21.421 | INFO     | __main__:main:197 - Starting OLAP Cubing process...
+2024-11-27 22:24:21.423 | INFO     | __main__:ingest_sales_data_from_dw:114 - Sales data successfully loaded from SQLite data warehouse.
+2024-11-27 22:24:21.426 | ERROR    | __main__:create_olap_cube:153 - Error creating OLAP cube: "Column(s) ['sale_amount_usd'] do not exist"
+2024-11-27 22:27:36.547 | INFO     | __main__:main:197 - Starting OLAP Cubing process...
+2024-11-27 22:27:36.549 | INFO     | __main__:ingest_sales_data_from_dw:114 - Sales data successfully loaded from SQLite data warehouse.
+2024-11-27 22:27:36.572 | INFO     | __main__:create_olap_cube:150 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-11-27 22:27:36.583 | INFO     | __main__:write_cube_to_csv:189 - OLAP cube saved to data\olap_cubing_outputs\multidimensional_olap_cube.csv.
+2024-11-27 22:27:36.584 | INFO     | __main__:main:223 - OLAP Cubing process completed successfully.
+2024-11-27 22:27:36.584 | INFO     | __main__:main:224 - Please see outputs in data\olap_cubing_outputs
+2024-12-02 16:33:11.590 | INFO     | __main__:main:112 - Starting OLAP Cubing process...
+2024-12-02 16:33:11.603 | INFO     | __main__:ingest_sales_data_from_dw:28 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 16:33:11.626 | INFO     | __main__:create_olap_cube:64 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-12-02 16:33:11.633 | INFO     | __main__:write_cube_to_csv:104 - OLAP cube saved to data\olap_cubing_outputs\multidimensional_olap_cube.csv.
+2024-12-02 16:33:11.634 | INFO     | __main__:main:138 - OLAP Cubing process completed successfully.
+2024-12-02 16:33:11.634 | INFO     | __main__:main:139 - Please see outputs in data\olap_cubing_outputs
+2024-12-02 16:40:44.947 | INFO     | __main__:main:82 - Starting OLAP Cubing process...
+2024-12-02 16:40:44.948 | INFO     | __main__:ingest_sales_data_from_dw:27 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 16:40:44.955 | INFO     | __main__:create_olap_cube:53 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-12-02 16:40:44.964 | INFO     | __main__:write_cube_to_csv:75 - OLAP cube saved to data\olap_cubing_outputs\olap_goal_cube.csv.
+2024-12-02 16:40:44.964 | INFO     | __main__:main:119 - OLAP Cubing process completed successfully.
+2024-12-02 16:40:44.964 | INFO     | __main__:main:120 - Please see outputs in data\olap_cubing_outputs
+2024-12-02 16:46:01.763 | INFO     | __main__:main:82 - Starting OLAP Cubing process...
+2024-12-02 16:46:01.765 | INFO     | __main__:ingest_sales_data_from_dw:27 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 16:46:01.770 | INFO     | __main__:create_olap_cube:53 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-12-02 16:46:01.773 | INFO     | __main__:write_cube_to_csv:75 - OLAP cube saved to data\olap_cubing_outputs\olap_goal_cube.csv.
+2024-12-02 16:46:01.774 | INFO     | __main__:main:119 - OLAP Cubing process completed successfully.
+2024-12-02 16:46:01.774 | INFO     | __main__:main:120 - Please see outputs in data\olap_cubing_outputs
+2024-12-02 16:46:50.774 | INFO     | __main__:main:82 - Starting OLAP Cubing process...
+2024-12-02 16:46:50.776 | INFO     | __main__:ingest_sales_data_from_dw:27 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 16:46:50.784 | INFO     | __main__:create_olap_cube:53 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-12-02 16:46:50.788 | INFO     | __main__:write_cube_to_csv:75 - OLAP cube saved to data\olap_cubing_outputs\olap_goal_cube.csv.
+2024-12-02 16:46:50.789 | INFO     | __main__:main:125 - OLAP Cubing process completed successfully.
+2024-12-02 16:46:50.789 | INFO     | __main__:main:126 - Please see outputs in data\olap_cubing_outputs

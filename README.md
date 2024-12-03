@@ -1,4 +1,4 @@
-# smart-store-marco
+## smart-store-marco
 P1. Project Start &amp; Planning (GitHub Repo, clone down, organize)
 
 Project Setup Instructions
@@ -157,7 +157,7 @@ def insert_sales(sales_df: pd.DataFrame, cursor: sqlite3.Cursor) -> None:
     pass
 ```
 
-## Complete the load data function definition
+### Complete the load data function definition
 
 Find the load_data_to_db function definition we stubbed in earlier. Complete the load_data_to_db() function definition. In this function, we'll: 
 
@@ -206,7 +206,7 @@ Find the load_data_to_db function definition we stubbed in earlier. Complete the
         if conn:
             conn.close()
 ```
-## Edit delete_existing_records function
+### Edit delete_existing_records function
 
 We'll use the cursor to execute SQL DELETE statements. These can fail (through no fault of ours), so use try / except blocks. 
 
@@ -223,7 +223,7 @@ def delete_existing_records(cursor: sqlite3.Cursor) -> None:
         raise
 ```
 
-## Complete Insert Function Definition (For the First Dimension Table)
+### Complete Insert Function Definition (For the First Dimension Table)
 
 Find the insert customers function definition you stubbed in. Remove the pass statement and add a description. 
 
@@ -280,3 +280,166 @@ Repeat for other tables:
 * Repeat the edit, execute (make sure your .venv is active!), git add-commit-push process as often as needed. 
 
 > The renaming part of the Scripted worked but had to remove it because the function was looking for column names that matched the renaming function. So, I removed that from the script because the names of my columns weren't renamed.
+
+### Cubing with Python
+
+> | ERROR    | __main__:ingest_sales_data_from_dw:116 - Error loading sale table data from data warehouse: unable to open database file
+
+Use PROJECT_ROOT (which I already defined as the root of my project) to make the path more flexible
+
+**Solution
+```python
+DB_PATH = PROJECT_ROOT.joinpath("data", "dw", "smart_sales.db")
+```
+
+# OLAP Cubing for Low-Performing Products
+
+This project performs OLAP (Online Analytical Processing) cubing on sales data to identify low-performing products. The goal is to analyze sales data and help decide which products may require discontinuation or repositioning based on their sales performance.
+
+## Features
+- **OLAP Cube Generation**: The script aggregates sales data along multiple dimensions and calculates summary statistics for each product.
+- **Low-Performing Products Identification**: Products with sales below a certain threshold and few transactions are identified as low-performing.
+- **Product Count Sorting**: The script counts how many times each product appears in the low-performing list and orders them accordingly.
+- **Output**: The OLAP cube is outputted as a CSV file, which can be analyzed further.
+
+## Requirements
+- **Python 3.x**
+- **Pandas**: For data manipulation and aggregation.
+- **SQLite3**: For connecting to and reading from the SQLite data warehouse.
+- **Logger**: For logging and debugging (can be replaced with standard Python logging).
+- **SQLite Database**: The database `smart_sales.db` should be located in the `data/dw/` directory.
+
+## Setup Instructions
+
+1. **Clone this repository**:
+    ```bash
+    git clone https://github.com/your-repository/olap-cubing.git
+    cd olap-cubing
+    ```
+
+2. **Install dependencies**:
+    Ensure Python 3.x is installed and then use pip to install dependencies:
+    ```bash
+    pip install pandas sqlite3
+    ```
+
+3. **Prepare the Data Warehouse**:
+    Make sure the `smart_sales.db` file exists in the `data/dw/` directory. If not, ensure you have access to it from the appropriate source or modify the database path in the script.
+
+4. **Directory Structure**:
+    - `data/dw/`: Directory containing the SQLite database file `smart_sales.db`.
+    - `data/olap_cubing_outputs/`: Directory where the final OLAP cube CSV will be saved.
+
+## Script Overview
+
+The script performs several tasks in sequence:
+
+1. **Ingest Sales Data**: Connects to the SQLite database and loads the sales data into a pandas DataFrame.
+    ```python
+    sales_df = pd.read_sql_query("SELECT * FROM sales", conn)
+    ```
+
+2. **Add Time-based Dimensions**: Converts the `SaleDate` column to a datetime object and adds additional time-based columns (Day of Week, Month, and Year).
+    ```python
+    sales_df["SaleDate"] = pd.to_datetime(sales_df["SaleDate"], errors='coerce')
+    sales_df["DayOfWeek"] = sales_df["SaleDate"].dt.day_name()
+    sales_df["Month"] = sales_df["SaleDate"].dt.month
+    sales_df["Year"] = sales_df["SaleDate"].dt.year
+    ```
+
+3. **Create OLAP Cube**: Group the sales data by multiple dimensions (Day of Week, Product ID, and Customer ID), and perform aggregation for sale amounts and transaction counts.
+    ```python
+    grouped = sales_df.groupby(dimensions)
+    cube = grouped.agg(metrics).reset_index()
+    ```
+
+4. **Identify Low-Performing Products**: Filters products with total sales below `$100` and fewer than 5 transactions. These products are considered for potential discontinuation or repositioning.
+    ```python
+    low_sales_threshold = 100
+    low_transactions_threshold = 5
+    low_performing_products = olap_cube[
+        (olap_cube["SaleAmount_sum"] < low_sales_threshold) &
+        (olap_cube["TransactionID_count"] < low_transactions_threshold)
+    ]
+    ```
+
+5. **Sort by Sales and Count**: Orders the low-performing products by their total sales and counts the occurrences of each product in the final list. The result is sorted by the product count in descending order.
+    ```python
+    low_performing_products["ProductCount"] = low_performing_products.groupby("ProductID")["ProductID"].transform("size")
+    low_performing_products = low_performing_products.sort_values(by="ProductCount", ascending=False)
+    ```
+
+6. **Save Results**: Finally, the OLAP cube with the low-performing products is saved as a CSV file.
+    ```python
+    low_performing_products.to_csv("data/olap_cubing_outputs/olap_goal_cube.csv", index=False)
+    ```
+
+## Example Output
+
+The output is a CSV file (`olap_goal_cube.csv`) that contains the following columns:
+- `DayOfWeek`: Day of the week when the sale occurred.
+- `ProductID`: Unique identifier for each product.
+- `CustomerID`: Unique identifier for each customer.
+- `SaleAmount_sum`: Total sales amount for each product in the specified dimensions.
+- `SaleAmount_mean`: Average sales amount for each product in the specified dimensions.
+- `TransactionID_count`: The count of transactions for each product.
+- `sale_ids`: A list of transaction IDs related to each product.
+- `ProductCount`: The number of times each product appears in the low-performing list.
+
+### Example Row:
+| DayOfWeek | ProductID | CustomerID | SaleAmount_sum | SaleAmount_mean | TransactionID_count | sale_ids                   | ProductCount |
+|-----------|-----------|------------|----------------|-----------------|---------------------|----------------------------|--------------|
+| Monday    | 12345     | 67890      | 85.23          | 15.44           | 4                   | [1001, 1002, 1003, 1004]   | 5            |
+| Tuesday   | 67890     | 12345      | 50.75          | 12.18           | 3                   | [1005, 1006, 1007]         | 3            |
+
+## Notes
+
+> - `Low-Performing Product Identification:` Products are flagged as low-performing based on sales under $100 and fewer than 5 transactions.
+> - `Sorting and Count:` The final output is sorted by the number of times a product is identified in the low-performing list, making it easier to prioritize products for discontinuation or repositioning.
+
+## How to Use
+
+1. **Run the script**:
+   ```bash
+   python olap_cubing.py
+   ```
+
+Once executed, the script will generate an OLAP cube and save it as `olap_goal_cube.csv` in the `data/olap_cubing_outputs/` directory.
+
+The resulting CSV file can be opened for further analysis or integrated into your business decision-making processes.
+
+---
+
+## Customization
+
+### Change Dimensions and Metrics
+
+You can modify the script to analyze other factors or metrics by adjusting the dimensions and aggregation functions in the code:
+
+```python
+dimensions = ["DayOfWeek", "ProductID", "CustomerID"]
+metrics = {
+    "SaleAmount": ["sum", "mean"],
+    "TransactionID": "count"
+}
+```
+
+## Version Control
+After making and testing your changes, follow these steps to commit your updates using Git:
+
+1. Add changes
+```bash
+git add.
+```
+OR
+```bash
+git add olap_cubing.py data/olap_cubing_outputs/olap_goal_cube.csv
+```
+1. Commit Changes
+```bash
+git commit -m "Some note"
+```
+1. Push changes to the remote repository (if applicable):
+```bash
+git push origin main
+```
