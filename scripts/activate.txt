@@ -1,0 +1,3 @@
+.venv\Scripts\activate
+export JAVA_HOME="C:/PROGRA~2/ECLIPS~1/jdk-17.0.9.9-hotspot"
+export PATH="$JAVA_HOME/bin:$PATH"
