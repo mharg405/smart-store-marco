@@ -569,3 +569,118 @@ Since this was a script-based workflow, results were saved in a CSV file (`olap_
 ### Challenge 3: Output Usability  
 - **Issue**: Large OLAP cube outputs were difficult to interpret.  
 - **Resolution**: Rounded `SaleAmount_mean` and `SaleAmount_sum` to 2 decimal places for clarity.  
+
+# Setting Up Apache Spark in a Windows Virtual Environment
+
+## Prerequisites
+
+- **Python 3.x** installed
+- **Java 8+** installed (preferably JDK 17 for compatibility with recent Spark versions)
+- **Spark** (version 3.x or above)
+- **Virtual Environment (venv)** for Python dependencies
+
+---
+
+## Task List
+
+### 1. **Install Python and Java**
+   - **Estimated Time**: 30-60 minutes
+   - **Task**: Install Python (if not already installed). Also, install Java JDK (Java 8 or higher). Spark requires Java to run, and it's essential to set the `JAVA_HOME` environment variable.
+   - **Instructions**:
+     1. Install Python from [python.org](https://www.python.org/downloads/).
+     2. Install JDK 17 from [Adoptium](https://adoptium.net/).
+     3. Set the `JAVA_HOME` environment variable:
+        ```bash
+        $env:JAVA_HOME="C:/path/to/jdk-17"
+        $env:PATH="$env:JAVA_HOME/bin;$env:PATH"
+        ```
+
+### 2. **Create and Activate a Virtual Environment**
+   - **Estimated Time**: 10-15 minutes
+   - **Task**: Create a virtual environment in your project folder.
+   - **Instructions**:
+     ```bash
+     python -m venv .venv
+     .\.venv\Scripts\Activate  # On Windows
+     ```
+
+### 3. **Install PySpark in the Virtual Environment**
+   - **Estimated Time**: 5-10 minutes
+   - **Task**: Install `pyspark` using pip.
+   - **Instructions**:
+     ```bash
+     pip install pyspark
+     ```
+
+### 4. **Verify Java and Spark Compatibility**
+   - **Estimated Time**: 5-10 minutes
+   - **Task**: Ensure that Spark can detect the installed Java version and that the required paths are set correctly.
+   - **Instructions**:
+     - Check `JAVA_HOME` and `PATH` in the environment:
+       ```bash
+       echo $env:JAVA_HOME
+       echo $env:PATH
+       ```
+     - Make sure the Java version is compatible with your version of Spark.
+
+### 5. **Download and Set Up Spark**
+   - **Estimated Time**: 10-20 minutes
+   - **Task**: Download and set up Spark locally.
+   - **Instructions**:
+     1. Download Spark from [Apache Spark](https://spark.apache.org/downloads.html).
+     2. Extract it to a folder.
+     3. Add Spark’s `bin` directory to your `PATH` environment variable:
+        ```bash
+        $env:PATH="C:/path/to/spark/bin;$env:PATH"
+        ```
+
+### 6. **Install Hadoop (Optional, but Recommended)**
+   - **Estimated Time**: 15-30 minutes
+   - **Task**: If needed, set up Hadoop for Spark. This is optional for standalone mode, but it’s needed if you're working with HDFS.
+   - **Instructions**:
+     1. Download Hadoop binaries from [Apache Hadoop](https://hadoop.apache.org/releases.html).
+     2. Set the `HADOOP_HOME` environment variable:
+        ```bash
+        $env:HADOOP_HOME="C:/path/to/hadoop"
+        ```
+
+### 7. **Configure Spark Session in Python**
+   - **Estimated Time**: 5-10 minutes
+   - **Task**: Set up a simple Spark session in Python to ensure that everything is working correctly.
+   - **Instructions**:
+     ```python
+     from pyspark.sql import SparkSession
+
+     spark = SparkSession.builder.appName("TestSpark").getOrCreate()
+     print("Spark session created successfully.")
+     ```
+
+### 8. **Troubleshoot and Resolve Issues**
+   - **Estimated Time**: 30-60 minutes
+   - **Task**: Troubleshoot any issues related to Java, Spark, or Python compatibility. Look for any error messages related to Spark initialization, missing Java, or environment variables.
+   - **Common Issues**:
+     - Incorrect `JAVA_HOME` or `PATH` configurations.
+     - Missing Hadoop files if you're trying to connect to a distributed system.
+     - Ensure you're using a compatible version of Spark and Java.
+
+### 9. **Test Spark Operations**
+   - **Estimated Time**: 10-20 minutes
+   - **Task**: Run basic Spark operations like reading and processing a CSV file to ensure the system is fully functional.
+   - **Instructions**:
+     ```python
+     df = spark.read.csv("path_to_some_data.csv", header=True, inferSchema=True)
+     df.show()
+     ```
+
+### 10. **Document Your Setup**
+   - **Estimated Time**: 30 minutes
+   - **Task**: Create a README file detailing the steps and environment setup for future reference.
+
+---
+
+## Estimated Total Time: 2-4 hours
+
+--- 
+
+This process will guide you in setting up Spark on a Windows system using a virtual environment. Each step is designed to ensure that both Spark and the necessary dependencies are installed correctly, and you'll be ready to perform data processing tasks with Spark in Python.
+

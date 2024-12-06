@@ -268,3 +268,14 @@
 2024-12-02 16:46:50.788 | INFO     | __main__:write_cube_to_csv:75 - OLAP cube saved to data\olap_cubing_outputs\olap_goal_cube.csv.
 2024-12-02 16:46:50.789 | INFO     | __main__:main:125 - OLAP Cubing process completed successfully.
 2024-12-02 16:46:50.789 | INFO     | __main__:main:126 - Please see outputs in data\olap_cubing_outputs
+2024-12-02 22:57:26.713 | INFO     | __main__:main:100 - Starting OLAP Cubing process...
+2024-12-02 22:57:26.733 | INFO     | __main__:ingest_sales_data_from_dw:28 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 22:57:26.776 | INFO     | __main__:create_olap_cube:54 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-12-02 22:57:26.783 | INFO     | __main__:write_cube_to_csv:76 - OLAP cube saved to data\olap_cubing_outputs\olap_goal_cube.csv.
+2024-12-02 23:05:18.789 | INFO     | __main__:main:110 - Starting OLAP Cubing process...
+2024-12-02 23:05:18.791 | INFO     | __main__:ingest_sales_data_from_dw:29 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 23:05:18.799 | INFO     | __main__:create_olap_cube:55 - OLAP cube created with dimensions: ['DayOfWeek', 'ProductID', 'CustomerID']
+2024-12-02 23:05:18.803 | INFO     | __main__:write_cube_to_csv:77 - OLAP cube saved to data\olap_cubing_outputs\olap_goal_cube.csv.
+2024-12-02 23:05:19.057 | INFO     | __main__:plot_low_performing_products:103 - Bar chart saved successfully to C:\Users\4harg\OneDrive\Documents\smart-store-marco\images\olapCubeGoals.png.
+2024-12-02 23:05:19.058 | INFO     | __main__:main:156 - OLAP Cubing process completed successfully.
+2024-12-02 23:05:19.058 | INFO     | __main__:main:157 - Please see outputs in data\olap_cubing_outputs
